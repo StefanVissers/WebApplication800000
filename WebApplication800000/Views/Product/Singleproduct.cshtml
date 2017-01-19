@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Singleproduct";
+}
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Producten zoeken </h2>
+                    <form action="">
+                        <input type="text" placeholder="Producten zoeken ...">
+                        <input type="submit" value="Zoeken">
+                    </form>
+                </div>
+
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Products</h2>
+                    <div class="thubmnail-recent">
+                        <img src="~/img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                        <h2>Sony Playstation 4</a></h2>
+                        <div class="product-sidebar-price">
+                            <ins>$700.00</ins> <del>$800.00</del>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="product-content-right">
+                    <div class="product-breadcroumb">
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="product-images">
+                                <div class="product-main-img">
+                                    <img src="~/img/Sony TV.jpg" alt="">
+                                </div>
+
+                                <div class="product-gallery">
+                                    <img src="~/img/Sony TV 2.jpg" alt="">
+                                    <img src="~/img/Sony TV 3.jpg" alt="">
+                                    <img src="~/img/Sony TV 4.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="product-inner">
+                                <h2 class="product-name">Sony Bravia KD-49XD8305</h2>
+                                <div class="product-inner-price">
+                                    <ins>$700.00</ins> <del>$800.00</del>
+                                </div>
+
+                                <form action="" class="cart">
+                                    <div class="quantity">
+                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                    </div>
+                                    <button class="add_to_cart_button" type="submit">Voeg toe aan winkelmandje</button>
+                                </form>
+
+                                <div class="product-inner-categorie">
+                                    <p>Categorie: <a>Summer</a>. Tags: <a>awesome</a>, <a>best</a>, <a>sale</a>. </p>
+                                </div>
+
+                                <div role="tabpanel">
+                                    <ul class="product-tab" role="tablist">
+                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Beschrijven</a></li>
+                                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                            <h2>Product Beschrijven</h2>
+                                            <p> De scherpte van 4K wordt gecombineerd met de helderheid, kleuren en details van HDR op deze Sony Bravia KD-49XD8305 led-televisie. Waar je voorheen zeer donkere en zeer heldere beelden niet goed kunt zien, zorgt HDR voor het verschil zodat dit nu wel zichtbaar is. Daarnaast beschikt de tv over 4K X-Reality PRO beeldverwerking en het Triluminos-display waarmee de KD-49XD8305 alles uit de kast haalt om een goed beeld weer te geven. Met zijn slanke design komt de televisie in elk huishouden goed tot zijn recht en met slim kabelbeheer kun je de bedrading zo goed mogelijk wegwerken. Verder beschikt de KD-49XD8305 over Android TV, hiermee krijg je toegang tot films, series en een enorm aanbod aan apps zodat je je geen moment meer hoeft te vervelen.</p>
+
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="profile">
+                                            <h2>Reviews</h2>
+                                            <div class="submit-review">
+                                                <p><label for="naam">Naam</label> <input name="naam" type="text"></p>
+                                                <p><label for="email">Email</label> <input name="email" type="email"></p>
+                                                <div class="rating-chooser">
+                                                    <p>Je rating</p>
+
+                                                    <div class="rating-wrap-post">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                </div>
+                                                <p><label for="review">Je review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
+                                                <p><input type="submit" value="Submit"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

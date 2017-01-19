@@ -1,0 +1,48 @@
+﻿@using WebApplication800000.Controllers
+@{
+    ViewBag.Title = "Productshowcase";
+}
+<h2>Productshowcase</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Catagory</th>
+            <th>Price</th>
+            <th>Manufactorer</th>
+            <th>Add to cart</th>
+        </tr>
+        @foreach (var x in ProductController.products)
+        {
+            <tr>
+                <td><tc>@x.Name</tc></td>
+                <td><tc>@x.Catagory</tc></td>
+                <td><tc>$@x.Price</tc></td>
+                <td><tc>@x.Manufactorer</tc></td>
+                <td><tc><input type=submit value="Add to cart" style="width:100%"></tc></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

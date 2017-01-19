@@ -2,30 +2,297 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alterhate</title>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+    <div class="site-branding-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo">
+                        <h1><a>A<span>lterhate</span></a></h1>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="shopping-item">
+                        <a>Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End site branding area -->
+
+
+
+    <div class="slider-area">
+        <div class="zigzag-bottom"></div>
+        <div id="slide-list" class="carousel carousel-fade slide" data-ride="carousel">
+
+            <div class="slide-bulletz">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ol class="carousel-indicators slide-indicators">
+                                <li data-target="#slide-list" data-slide-to="0" class="active"></li>
+                                <li data-target="#slide-list" data-slide-to="1"></li>
+                                <li data-target="#slide-list" data-slide-to="2"></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="single-slide">
+                        <div class="slide-bg slide-one"></div>
+                        <div class="slide-text-wrapper">
+                            <div class="slide-text">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-6">
+                                            <div class="slide-content">
+                                                <h2>Bouw je eigen PC!</h2>
+                                                <p>Bouw nu je eigen PC gemakkelijk met de PC builder!</p>
+                                                <a href="" class="readmore">Learn more</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="single-slide">
+                        <div class="slide-bg slide-two"></div>
+                        <div class="slide-text-wrapper">
+                            <div class="slide-text">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-6">
+                                            <div class="slide-content">
+                                                <h2>Laagste prijzen</h2>
+                                                <p>Bij Alterhate hanteren we altijd de laagste prijzen en zeker lager dan Alternate ;)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="single-slide">
+                        <div class="slide-bg slide-three"></div>
+                        <div class="slide-text-wrapper">
+                            <div class="slide-text">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-6">
+                                            <div class="slide-content">
+                                                <h2>Klantenservice</h2>
+                                                <p>Bij Alterhate is klantenservice heel belangrijke want klanten adviseren is onze speciliteit!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> <!-- End slider area -->
+
+    <div class="promo-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-promo">
+                        <i class="fa fa-refresh"></i>
+                        <p>30 Dagen retour</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-promo">
+                        <i class="fa fa-truck"></i>
+                        <p>Gratis verzending</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-promo">
+                        <i class="fa fa-lock"></i>
+                        <p>Veilig betalen ;)</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-promo">
+                        <i class="fa fa-gift"></i>
+                        <p>Altijd de nieuwste producten</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End promo area -->
+
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="latest-product">
+                        <h2 class="section-title">Latest Products</h2>
+                        <div class="product-carousel">
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="~/img/product-1.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Voeg toe aan winkelmandje</a>
+                                        <a href="#" class="view-details-link"><i class="fa fa-link"></i> Zie de details</a>
+                                    </div>
+                                </div>
+
+                                <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins>$700.00</ins> <del>$800.00</del>
+                                </div>
+                            </div>
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="~/img/product-2.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Voeg toe aan winkelmandje</a>
+                                        <a href="#" class="view-details-link"><i class="fa fa-link"></i> Zie de details</a>
+                                    </div>
+                                </div>
+
+                                <h2><a href="single-product.html">Apple new mac book 2016 March :P</a></h2>
+                                <div class="product-carousel-price">
+                                    <ins>$899.00</ins> <del>$999.00</del>
+                                </div>
+                            </div>
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="~/img/product-3.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Voeg toe aan winkelmandje</a>
+                                        <a href="#" class="view-details-link"><i class="fa fa-link"></i> Zie de details</a>
+                                    </div>
+                                </div>
+
+                                <h2><a href="single-product.html">Apple new iPhone 6</a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins>$400.00</ins> <del>$425.00</del>
+                                </div>
+                            </div>
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="~/img/product-4.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Voeg toe aan winkelmandje</a>
+                                        <a href="#" class="view-details-link"><i class="fa fa-link"></i> Zie de details</a>
+                                    </div>
+                                </div>
+
+                                <h2><a href="single-product.html">Sony Playstation Microsoft</a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins>$200.00</ins> <del>$225.00</del>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End main content area -->
+
+    <div class="footer-top-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2>A<span>lterhate</span></h2>
+                        <p>  </p>
+                        <div class="footer-social">
+                            <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.youtube.com" target="_blank"><i class="fa fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Gebruiker Navigatie</h2>
+                        <ul>
+                            <li><a href="#">Mijn account</a></li>
+                            <li><a href="#">Bestelgeschiedenis</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Startpagina</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Categorieën</h2>
+                        <ul>
+                            <li><a href="#">Mobiele telefoon</a></li>
+                            <li><a href="#">Home toebehoren</a></li>
+                            <li><a href="#">LED TV</a></li>
+                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">Gadgets</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</body>
+</html>
