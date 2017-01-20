@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication800000.Models;
 
 namespace WebApplication800000.Controllers
@@ -78,7 +79,7 @@ namespace WebApplication800000.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Email,Password,date_of_birth,phone_number")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Email,Password,date_of_birth,phone_number,is_admin")] Customer customer)
         {
             if (ModelState.IsValid)
             {

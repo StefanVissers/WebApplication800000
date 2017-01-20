@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -37,5 +39,9 @@ namespace WebApplication800000.Models
         [Display(Name = "phone_number")]
         public String phone_number { get; set; }
 
+        [JsonProperty("allowUploading", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        [DefaultValue(false)]
+        [Display(Name = "is_admin")]
+        public bool is_admin { get; set; }
     }
 }
