@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 using WebApplication800000.Models;
 
 namespace WebApplication800000.Controllers

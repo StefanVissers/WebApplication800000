@@ -71,10 +71,52 @@ namespace WebApplication800000.Controllers
             {
                 if ((customer.Email == db.Customers.Find(i).Email) && (customer.Password == db.Customers.Find(i).Password))
                 {
-                    return RedirectToAction("Index");
+                    if (db.Customers.Find(i).is_admin)
+                    {
+                        HttpCookie adminCookie = new HttpCookie("adminCookie");
+                        HttpCookie loggedinCookie = new HttpCookie("loggedInCookie");
+
+                        Response.Cookies.Add(adminCookie);
+                        Response.Cookies["adminCookie"].Value = "true";
+                        Response.Cookies["adminCookie"].Expires = DateTime.Now.AddDays(1);
+                        var x = Request.Cookies["adminCookie"].Value;
+
+                        Response.Cookies.Add(loggedinCookie);
+                        Response.Cookies["loggedInCookie"].Value = "true";
+                        Response.Cookies["loggedInCookie"].Expires = DateTime.Now.AddDays(1);
+                        var y = Request.Cookies["loggedInCookie"].Value;
+
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        HttpCookie adminCookie = new HttpCookie("adminCookie");
+                        HttpCookie loggedinCookie = new HttpCookie("loggedInCookie");
+
+                        Response.Cookies.Add(adminCookie);
+                        Response.Cookies["adminCookie"].Value = "false";
+                        Response.Cookies["adminCookie"].Expires = DateTime.Now.AddMinutes(1);
+                        var x = Request.Cookies["adminCookie"].Value;
+
+                        Response.Cookies.Add(loggedinCookie);
+                        Response.Cookies["loggedInCookie"].Value = "true";
+                        Response.Cookies["loggedInCookie"].Expires = DateTime.Now.AddDays(1);
+                        var y = Request.Cookies["loggedInCookie"].Value;
+
+                        return RedirectToAction("Edit/"+i);
+                    }
                 }
             }
             return View();
+        }
+
+        // GET: Customers/Logout
+        public ActionResult Logout()
+        {
+            Response.Cookies["adminCookie"].Value = "false";
+            Response.Cookies["loggedInCookie"].Value = "false";
+
+            return RedirectToAction("/");
         }
 
         // GET: Customers/Edit/5

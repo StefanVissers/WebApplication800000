@@ -6,6 +6,8 @@
 
 <h2>Index</h2>
 
+@if (Request.Cookies["adminCookie"].Value == "true")
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -32,7 +34,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -53,11 +56,12 @@
             @Html.DisplayFor(modelItem => item.phone_number)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }
-
+    
 </table>
+}
