@@ -33,14 +33,14 @@
             <th>Manufactorer</th>
             <th>Remove</th>
         </tr>
-        @foreach (var x in ProductController.products)
+        @foreach (var y in ProductController.addedproducts)
         {
             <tr>
-                <td><tc>@x.Name</tc></td>
-                <td><tc>@x.Catagory</tc></td>
-                <td><tc>$@x.Price</tc></td>
-                <td><tc>@x.Manufactorer</tc></td>
-                <td><tc><input type=submit value="Remove" style="width:100%"></tc></td>
+                <td><tc>@y.Name</tc></td>
+                <td><tc>@y.Catagory</tc></td>
+                <td><tc>$@y.Price</tc></td>
+                <td><tc>@y.Manufactorer</tc></td>
+                <td><tc>@Html.ActionLink("remove", "meShop", "Product", new { m = y.products_id }, null)</tc></td>
             </tr>
         }
     </table>
