@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace WebApplication800000.Models
 {
@@ -26,6 +23,7 @@ namespace WebApplication800000.Models
 
         [Required(ErrorMessage = "Please enter your e-mail address")]
         [Display(Name = "Email")]
+        [EmailAddress]
         public String Email { get; set; }
 
         [Required(ErrorMessage = "Please enter your password.")]
@@ -37,6 +35,7 @@ namespace WebApplication800000.Models
         public DateTime date_of_birth { get; set; }
 
         [Display(Name = "phone_number")]
+        [Phone]
         public String phone_number { get; set; }
 
         [JsonProperty("allowUploading", DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]

@@ -59,6 +59,24 @@ namespace WebApplication800000.Controllers
             return View(customer);
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login([Bind(Include = "Email,Password")] Customer customer)
+        {
+            for (int i = 1; i <= db.Customers.Count(); i++)
+            {
+                if ((customer.Email == db.Customers.Find(i).Email) && (customer.Password == db.Customers.Find(i).Password))
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return View();
+        }
+
         // GET: Customers/Edit/5
         public ActionResult Edit(int id)
         {
