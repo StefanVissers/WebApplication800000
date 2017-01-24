@@ -20,14 +20,35 @@ namespace WebApplication800000.Models
         private ArrayList data = new ArrayList();
 
         public List<int> intArr = new List<int> { 1, 2, 3, 4 };
+        public List<int> intaddArr = new List<int> { 1, 2, 3, 4 };
+        public List<int> intaddedArr = new List<int> { 1, 2, 3, 4 };
         private List<ProductModels> products = new List<ProductModels>();
-        private void BuildProducts(int amount)
+        private List<ProductModels> addproducts = new List<ProductModels>();
+        private List<ProductModels> addedproducts = new List<ProductModels>();
+        
+        public void BuildProducts(int amount)
         {
             for (int i = 0; i < amount; i++)
             {
                 products.Add(new ProductModels(intArr[i]));
             }
         }
+        public void AddProducts(int amount)
+        {
+            for (int y = 0; y < amount; y++)
+            {
+                addproducts.Add(new ProductModels(intaddArr[y]));
+            }
+        }
+        
+        public void AddedProducts(int amount)
+        { 
+            for (int x = 0; x < amount; x++)
+            {
+                addedproducts.Add(new ProductModels(intaddArr[x]));
+            }
+        }
+
 
         public ProductModels(int _id)
         {
@@ -35,7 +56,7 @@ namespace WebApplication800000.Models
             {
                 conn = Connection.Initialize();
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM product WHERE product_id=@product_id;", conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM products WHERE product_id=@product_id;", conn);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@product_id", (product_id));
                 using (MySqlDataReader pro = cmd.ExecuteReader())
@@ -56,13 +77,17 @@ namespace WebApplication800000.Models
         }
         private void FillValues()
         {
+            product_id = Int32.Parse(data[0].ToString());
             name = data[1].ToString();
             catagory = data[2].ToString();
             price = Int32.Parse(data[3].ToString());
             manufactorer = data[4].ToString();
 
         }
-
+        public int products_id
+        {
+            get { return product_id; }
+        }
         public String Name
         {
             get { return name; }

@@ -1,4 +1,5 @@
 ﻿@using WebApplication800000.Controllers
+@using System.Threading.Tasks
 @{
     ViewBag.Title = "Productshowcase";
 }
@@ -6,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>To Do Items</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -25,24 +27,28 @@
     </style>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Catagory</th>
-            <th>Price</th>
-            <th>Manufactorer</th>
-            <th>Add to cart</th>
-        </tr>
-        @foreach (var x in ProductController.products)
-        {
+   
+
+        <table>
             <tr>
-                <td><tc>@x.Name</tc></td>
-                <td><tc>@x.Catagory</tc></td>
-                <td><tc>$@x.Price</tc></td>
-                <td><tc>@x.Manufactorer</tc></td>
-                <td><tc><input type=submit value="Add to cart" style="width:100%"></tc></td>
+                <th>Name</th>
+                <th>Catagory</th>
+                <th>Price</th>
+                <th>Manufactorer</th>
+                <th>Add to cart</th>
             </tr>
-        }
-    </table>
+            @foreach (var x in ProductController.products)
+            {
+                <tr>
+                    <td><tc>@x.Name</tc></td>
+                    <td><tc>@x.Catagory</tc></td>
+                    <td><tc>$@x.Price</tc></td>
+                    <td><tc>@x.Manufactorer</tc></td>
+                    @*<td><tc><button name="addtocart" type=submit value="Add To Cart" style="width:100%">HTML</button></tc></td>*@
+                    <td><tc>@Html.ActionLink("addtocart", "ikShop", "Product", new { m = x.products_id}, null)</tc></td>
+
+                </tr>
+            }
+        </table>
 </body>
 </html>
