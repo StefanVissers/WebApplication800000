@@ -67,43 +67,45 @@ namespace WebApplication800000.Controllers
         [HttpPost]
         public ActionResult Login([Bind(Include = "Email,Password")] Customer customer)
         {
-            for (int i = 1; i <= db.Customers.Count(); i++)
+            for (int i = 1; i <= db.Customers.Max(p => p.Id); i++)
             {
-                if ((customer.Email == db.Customers.Find(i).Email) && (customer.Password == db.Customers.Find(i).Password))
-                {
-                    if (db.Customers.Find(i).is_admin)
+                if (db.Customers.Find(i) != null) {
+                    if ((customer.Email == db.Customers.Find(i).Email) && (customer.Password == db.Customers.Find(i).Password))
                     {
-                        HttpCookie adminCookie = new HttpCookie("adminCookie");
-                        HttpCookie loggedinCookie = new HttpCookie("loggedInCookie");
+                        if (db.Customers.Find(i).is_admin)
+                        {
+                            HttpCookie adminCookie = new HttpCookie("adminCookie");
+                            HttpCookie loggedinCookie = new HttpCookie("loggedInCookie");
 
-                        Response.Cookies.Add(adminCookie);
-                        Response.Cookies["adminCookie"].Value = "true";
-                        Response.Cookies["adminCookie"].Expires = DateTime.Now.AddDays(1);
-                        var x = Request.Cookies["adminCookie"].Value;
+                            Response.Cookies.Add(adminCookie);
+                            Response.Cookies["adminCookie"].Value = "true";
+                            Response.Cookies["adminCookie"].Expires = DateTime.Now.AddDays(1);
+                            var x = Request.Cookies["adminCookie"].Value;
 
-                        Response.Cookies.Add(loggedinCookie);
-                        Response.Cookies["loggedInCookie"].Value = "true";
-                        Response.Cookies["loggedInCookie"].Expires = DateTime.Now.AddDays(1);
-                        var y = Request.Cookies["loggedInCookie"].Value;
+                            Response.Cookies.Add(loggedinCookie);
+                            Response.Cookies["loggedInCookie"].Value = "true";
+                            Response.Cookies["loggedInCookie"].Expires = DateTime.Now.AddDays(1);
+                            var y = Request.Cookies["loggedInCookie"].Value;
 
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        HttpCookie adminCookie = new HttpCookie("adminCookie");
-                        HttpCookie loggedinCookie = new HttpCookie("loggedInCookie");
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            HttpCookie adminCookie = new HttpCookie("adminCookie");
+                            HttpCookie loggedinCookie = new HttpCookie("loggedInCookie");
 
-                        Response.Cookies.Add(adminCookie);
-                        Response.Cookies["adminCookie"].Value = "false";
-                        Response.Cookies["adminCookie"].Expires = DateTime.Now.AddMinutes(1);
-                        var x = Request.Cookies["adminCookie"].Value;
+                            Response.Cookies.Add(adminCookie);
+                            Response.Cookies["adminCookie"].Value = "false";
+                            Response.Cookies["adminCookie"].Expires = DateTime.Now.AddMinutes(1);
+                            var x = Request.Cookies["adminCookie"].Value;
 
-                        Response.Cookies.Add(loggedinCookie);
-                        Response.Cookies["loggedInCookie"].Value = "true";
-                        Response.Cookies["loggedInCookie"].Expires = DateTime.Now.AddDays(1);
-                        var y = Request.Cookies["loggedInCookie"].Value;
+                            Response.Cookies.Add(loggedinCookie);
+                            Response.Cookies["loggedInCookie"].Value = "true";
+                            Response.Cookies["loggedInCookie"].Expires = DateTime.Now.AddDays(1);
+                            var y = Request.Cookies["loggedInCookie"].Value;
 
-                        return RedirectToAction("Edit/"+i);
+                            return RedirectToAction("Edit/" + i);
+                        }
                     }
                 }
             }
