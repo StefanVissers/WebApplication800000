@@ -116,8 +116,10 @@ namespace WebApplication800000.Controllers
         // GET: Customers/Logout
         public ActionResult Logout()
         {
-            Response.Cookies["adminCookie"].Value = "false";
-            Response.Cookies["loggedInCookie"].Value = "false";
+            //Response.Cookies["adminCookie"].Value = "false";
+            //Response.Cookies["loggedInCookie"].Value = "false";
+            Response.Cookies["loggedInCookie"].Expires = DateTime.Now.AddDays(-1d);
+            Response.Cookies["adminCookie"].Expires = DateTime.Now.AddDays(-1d);
 
             return RedirectToAction("/");
         }

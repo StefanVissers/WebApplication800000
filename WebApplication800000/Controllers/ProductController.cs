@@ -127,5 +127,19 @@ namespace WebApplication800000.Controllers
             ViewBag.Message = "Your Shopping Cart page.";
             return View(addedproducts);
         }
+
+        public ActionResult BuyProducts(List<ProductModels> addedProducts)
+        {
+            addedProducts = addedproducts;
+            ViewBag.Message = "Checkout";
+
+
+            if (Request.Cookies.Get("loggedInCookie") == null)
+            {
+                return RedirectToAction("Login", "Customers");
+
+            }
+            return View(addedproducts);
+        }
     }
 }
