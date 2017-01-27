@@ -24,13 +24,11 @@ namespace WebApplication800000.Controllers
             return View();
         }
         public ActionResult ikShop(String m)
+            //Product showcase
         {
             HttpCookie cookie = new HttpCookie("product");
 
             cookie.Values.Add(m, m);
-
-
-
 
             Response.Cookies.Add(cookie);
             addedproducts.Add(new ProductModels(Int32.Parse(m)));
@@ -39,6 +37,7 @@ namespace WebApplication800000.Controllers
         }
 
         public ActionResult meShop(String m)
+            //Shopping Cart remove product
         {
             foreach (var x in addedproducts)
             {
@@ -52,7 +51,6 @@ namespace WebApplication800000.Controllers
             return RedirectToAction("Shoppingcart", "Product");
         }
         public ActionResult Productshowcase()
-
 
         {
             HttpCookie cookie = new HttpCookie("productcookie");
@@ -77,6 +75,7 @@ namespace WebApplication800000.Controllers
             return View(products);
         }
         public ActionResult Shoppingcart()
+
         {
             if (Request.Cookies.Get("product") != null && addedproducts.Count == 0)
             {
@@ -88,11 +87,23 @@ namespace WebApplication800000.Controllers
                     }
                 }
             }
-
-
+            
             Request.Cookies.Get("productcookie");
             ViewBag.Message = "Your Shopping Cart page.";
             
+            return View(addedproducts);
+        }
+
+        public ActionResult BuyProducts(List<ProductModels> addedProducts)
+        {
+            addedProducts = addedproducts;
+            ViewBag.Message = "Checkout";
+            
+
+            if (Request.Cookies["loggedInCookie"] == null)
+            {
+
+            }
             return View(addedproducts);
         }
     }

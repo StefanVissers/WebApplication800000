@@ -26,5 +26,12 @@ namespace WebApplication800000.Controllers
 
             return View();
         }
+
+        public ActionResult Checkout()
+        {
+            ViewBag.Message = "Checkout";
+
+            return View();
+        }
     }
 }

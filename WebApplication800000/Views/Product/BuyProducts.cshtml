@@ -1,8 +1,9 @@
 ﻿@using WebApplication800000.Controllers
 @{
-    ViewBag.Title = "ShoppingCart";
+    ViewBag.Title = "Checkout";
 }
-<h2>Shopping Cart</h2>
+
+<h2>Checkout</h2>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,9 +23,6 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
-        h3 {
-            text-align: right;
-        }
     </style>
 </head>
 <body>
@@ -34,7 +32,6 @@
             <th>Catagory</th>
             <th>Price</th>
             <th>Manufactorer</th>
-            <th>Remove</th>
         </tr>
         @foreach (var y in ProductController.addedproducts)
         {
@@ -43,12 +40,20 @@
                 <td><tc>@y.Catagory</tc></td>
                 <td><tc>$@y.Price</tc></td>
                 <td><tc>@y.Manufactorer</tc></td>
-                <td><tc>@Html.ActionLink("remove", "meShop", "Product", new { m = y.products_id }, null)</tc></td>
             </tr>
         }
+        @{int temp = 0;
+            foreach (var y in ProductController.addedproducts)
+            {
+                temp = temp + y.Price;
+            }
+            <tfoot>
+                <tr><td>TOTAL Price:</td><td>$@temp</td></tr>
+            </tfoot>
+        }
     </table>
-    <h3><b>@Html.ActionLink("Checkout", "BuyProducts", "Product")</b></h3>
     
-       
+
 </body>
 </html>
+
