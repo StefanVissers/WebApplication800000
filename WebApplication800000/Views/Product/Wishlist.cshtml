@@ -1,8 +1,8 @@
 ﻿@using WebApplication800000.Controllers
 @{
-    ViewBag.Title = "ShoppingCart";
+    ViewBag.Title = "Wishlist";
 }
-<h2>Shopping Cart</h2>
+<h2>Wish List</h2>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,14 +33,14 @@
             <th>Manufactorer</th>
             <th>Remove</th>
         </tr>
-        @foreach (var x in ProductController.addedproducts)
+        @foreach (var x in ProductController.addedwishes)
         {
             <tr>
                 <td><tc>@x.Name</tc></td>
                 <td><tc>@x.Catagory</tc></td>
                 <td><tc>$@x.Price</tc></td>
                 <td><tc>@x.Manufactorer</tc></td>
-                <td><tc>@Html.ActionLink("Remove", "remShop", "Product", new { m = x.products_id }, null)</tc></td>
+                <td><tc>@Html.ActionLink("Remove", "ReWishlist", "Product", new { w = x.products_id }, null)</tc></td>
             </tr>
         }
 

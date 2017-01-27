@@ -35,7 +35,6 @@
                 <th>Catagory</th>
                 <th>Price</th>
                 <th>Manufactorer</th>
-                <th>Add to cart</th>
             </tr>
             @foreach (var x in ProductController.products)
             {
@@ -45,8 +44,8 @@
                     <td><tc>$@x.Price</tc></td>
                     <td><tc>@x.Manufactorer</tc></td>
                     @*<td><tc><button name="addtocart" type=submit value="Add To Cart" style="width:100%">HTML</button></tc></td>*@
-                    <td><tc>@Html.ActionLink("addtocart", "ikShop", "Product", new { m = x.products_id}, null)</tc></td>
-
+                    <td><tc>@Html.ActionLink("addtocart", "addShop", "Product", new { m = x.products_id}, null)</tc></td>
+                    <td><tc>@Html.ActionLink("Add to wishlist", "CrWishlist", "Product", new { w = x.products_id }, null)</tc></td>
                 </tr>
             }
         </table>
