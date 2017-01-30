@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript" src="~/Scripts/jquery-latest.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.tablesorter.js"></script>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -28,29 +30,30 @@
     </style>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Catagory</th>
-            <th>Price</th>
-            <th>Manufactorer</th>
-            <th>Remove</th>
-        </tr>
-        @foreach (var x in ProductController.addedproducts)
-        {
+
+    <table id="myTable" class="tablesorter">
+        <thead>
             <tr>
-                <td><tc>@x.Name</tc></td>
-                <td><tc>@x.Catagory</tc></td>
-                <td><tc>$@x.Price</tc></td>
-                <td><tc>@x.Manufactorer</tc></td>
-                <td><tc>@Html.ActionLink("Remove", "remShop", "Product", new { m = x.products_id }, null)</tc></td>
+                <th>Name</th>
+                <th>Catagory</th>
+                <th>Price</th>
+                <th>Manufactorer</th>
+                <th>Remove</th>
             </tr>
-        }
-
-    </table>
-
+        </thead>
+        <tbody>
+            @foreach (var x in ProductController.addedproducts)
+            {
+                <tr>
+                    <td><tc>@x.Name</tc></td>
+                    <td><tc>@x.Catagory</tc></td>
+                    <td><tc>$@x.Price</tc></td>
+                    <td><tc>@x.Manufactorer</tc></td>
+                    <td><tc>@Html.ActionLink("Remove", "remShop", "Product", new { m = x.products_id }, null)</tc></td>
+                </tr>
+            }
+        </tbody>
+</table>
     <h3><b>@Html.ActionLink("Checkout", "BuyProducts", "Product")</b></h3>
-
-
 </body>
 </html>

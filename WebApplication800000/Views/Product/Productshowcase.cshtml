@@ -7,7 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>To Do Items</title>
+
+    <script type="text/javascript" src="~/Scripts/jquery-latest.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.tablesorter.js"></script> 
     <style>
         table {
             font-family: arial, sans-serif;
@@ -25,29 +27,34 @@
             background-color: #dddddd;
         }
     </style>
+    
 </head>
 <body>
-   
-
-        <table>
+    <table id="myTable" class="tablesorter">
+        <thead>
             <tr>
                 <th>Name</th>
                 <th>Catagory</th>
                 <th>Price</th>
                 <th>Manufactorer</th>
             </tr>
+        </thead>
+        <tbody>
             @foreach (var x in ProductController.products)
             {
+
                 <tr>
                     <td><tc>@x.Name</tc></td>
                     <td><tc>@x.Catagory</tc></td>
                     <td><tc>$@x.Price</tc></td>
                     <td><tc>@x.Manufactorer</tc></td>
                     @*<td><tc><button name="addtocart" type=submit value="Add To Cart" style="width:100%">HTML</button></tc></td>*@
-                    <td><tc>@Html.ActionLink("addtocart", "addShop", "Product", new { m = x.products_id}, null)</tc></td>
-                    <td><tc>@Html.ActionLink("Add to wishlist", "CrWishlist", "Product", new { w = x.products_id }, null)</tc></td>
+                    <td><tc>@Html.ActionLink("Add To Cart", "addShop", "Product", new { m = x.products_id }, null)</tc></td>
+                    <td><tc>@Html.ActionLink("Add To Wishlist", "CrWishlist", "Product", new { w = x.products_id }, null)</tc></td>
                 </tr>
+
             }
-        </table>
+        </tbody>
+    </table>
 </body>
 </html>
