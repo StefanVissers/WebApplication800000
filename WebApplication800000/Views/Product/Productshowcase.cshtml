@@ -42,9 +42,21 @@
         <tbody>
             @foreach (var x in ProductController.products)
             {
-
                 <tr>
-                    <td><tc>@x.Name</tc></td>
+                    <td><tc>
+                        @if (x.Catagory == "MIS")
+                        {
+                            <img src="~/img/MSI.jpeg" style="max-height:50%; max-width:50%"/>
+                        }
+                        @if (x.Catagory == "Acer")
+                        {
+                            <img src="~/img/Acer.jpeg" style="max-height:50%; max-width:50%"/>
+                        }
+                        @if (x.Catagory == "Samsung")
+                        {
+                            <img src="~/img/Samsung.jpg" style="max-height:50%; max-width:50%"/>
+                        }
+                        @x.Name</tc></td>
                     <td><tc>@x.Catagory</tc></td>
                     <td><tc>$@x.Price</tc></td>
                     <td><tc>@x.Manufactorer</tc></td>
