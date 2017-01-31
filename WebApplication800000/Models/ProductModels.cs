@@ -22,26 +22,19 @@ namespace WebApplication800000.Models
 
         public List<int> intArr = new List<int> { 1, 2, 3, 4 };
         public List<int> intaddArr = new List<int> { 1, 2, 3, 4 };
-        public List<int> intaddedArr = new List<int> { 1, 2, 3, 4 };
+        public List<int> intaddArrwish = new List<int> { 1, 2, 3, 4 };
         private List<ProductModels> products = new List<ProductModels>();
-        private List<ProductModels> addproducts = new List<ProductModels>();
         private List<ProductModels> addedproducts = new List<ProductModels>();
+        private List<ProductModels> wishlist = new List<ProductModels>();
+
         
         public void BuildProducts(int amount)
         {
-            for (int i = 0; i < amount; i++)
+            for (int x = 0; x < amount; x++)
             {
-                products.Add(new ProductModels(intArr[i]));
+                products.Add(new ProductModels(intArr[x]));
             }
-        }
-        public void AddProducts(int amount)
-        {
-            for (int y = 0; y < amount; y++)
-            {
-                addproducts.Add(new ProductModels(intaddArr[y]));
-            }
-        }
-        
+        }        
         public void AddedProducts(int amount)
         { 
             for (int x = 0; x < amount; x++)
@@ -49,6 +42,15 @@ namespace WebApplication800000.Models
                 addedproducts.Add(new ProductModels(intaddArr[x]));
             }
         }
+
+        public void Wishlist(int amount)
+        {
+            for (int x = 0; x < amount; x++)
+            {
+                wishlist.Add(new ProductModels(intaddArrwish[x]));
+            }
+        }
+
 
 
         public ProductModels(int _id)

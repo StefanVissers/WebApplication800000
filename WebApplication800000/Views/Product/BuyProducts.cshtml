@@ -1,7 +1,6 @@
 ﻿@using WebApplication800000.Controllers
-@using System.Threading.Tasks
 @{
-    ViewBag.Title = "Browse Products";
+    ViewBag.Title = "Checkout";
 }
 <!DOCTYPE html>
 <html>
@@ -26,9 +25,9 @@
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
-
     <script type="text/javascript" src="~/Scripts/jquery-latest.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.tablesorter.js"></script> 
+
     <style>
         table {
             font-family: arial, sans-serif;
@@ -46,7 +45,6 @@
             background-color: #dddddd;
         }
     </style>
-    
 </head>
 <body>
     <div class="site-branding-area">
@@ -83,46 +81,55 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var x in ProductController.products)
+            @foreach (var x in ProductController.addedproducts)
             {
                 <tr>
-                    <td><tc>
-                        @if(x.Manufactorer == "Msi")
-                        {
-                            <img src="~/img/MSI.png" style="max-height:30%; max-width:30%"/>
-                        }
-                        else if(x.Manufactorer == "Acer")
-                        {
-                            <img src="~/img/Acer.png" style="max-height:30%; max-width:30%"/>
-                        }
-                        else if(x.Manufactorer == "Microsoft")
-                        {
-                            <img src="~/img/Microsoft surface pro 4.png" style="max-height:30%; max-width:30%"/>
-                        }
-                        else if(x.Manufactorer == "Lenovo")
-                        {
-                            <img src="~/img/Lenovo yoga.png" style="max-height:30%; max-width:30%"/>
-                        }
-                        else if(x.Manufactorer == "Samsung")
-                        {
-                            <img src="~/img/Samsung.png" style="max-height:30%; max-width:30%"/>
-                        }
-                        else if (x.Manufactorer == "Asus")
-                        {
-                            <img src="~/img/Asus zenbook.png" style="max-height:30%; max-width:30%" />
-                        }
-                        @x.Name</tc></td>
+                    <td>
+                        <tc>
+                            @if (x.Manufactorer == "Msi")
+                            {
+                                <img src="~/img/MSI.png" style="max-height:30%; max-width:30%" />
+                            }
+                            else if (x.Manufactorer == "Acer")
+                            {
+                                <img src="~/img/Acer.png" style="max-height:30%; max-width:30%" />
+                            }
+                            else if (x.Manufactorer == "Microsoft")
+                            {
+                                <img src="~/img/Microsoft surface pro 4.png" style="max-height:30%; max-width:30%" />
+                            }
+                            else if (x.Manufactorer == "Lenovo")
+                            {
+                                <img src="~/img/Lenovo yoga.png" style="max-height:30%; max-width:30%" />
+                            }
+                            else if (x.Manufactorer == "Samsung")
+                            {
+                                <img src="~/img/Samsung.png" style="max-height:30%; max-width:30%" />
+                            }
+                            else if (x.Manufactorer == "Asus")
+                            {
+                                <img src="~/img/Asus zenbook.png" style="max-height:30%; max-width:30%" />
+                            }
+                            @x.Name
+                        </tc>
+                    </td>
                     <td><tc>@x.Catagory</tc></td>
                     <td><tc>$@x.Price</tc></td>
                     <td><tc>@x.Manufactorer</tc></td>
-                    @*<td><tc><button name="addtocart" type=submit value="Add To Cart" style="width:100%">HTML</button></tc></td>*@
-                    <td><tc>@Html.ActionLink("Add To Cart", "addShop", "Product", new { m = x.products_id }, null)</tc></td>
-                    <td><tc>@Html.ActionLink("Add To Wishlist", "CrWishlist", "Product", new { w = x.products_id }, null)</tc></td>
                 </tr>
-
             }
         </tbody>
+            @{int temp = 0;
+            foreach (var x in ProductController.addedproducts)
+            {
+                temp = temp + x.Price;
+            }
+            <tfoot>
+                <tr><td>TOTAL Price:</td><td>$@temp</td></tr>
+            </tfoot>
+            }
+        
     </table>
-
 </body>
 </html>
+

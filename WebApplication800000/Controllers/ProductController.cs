@@ -8,10 +8,9 @@ namespace WebApplication800000.Controllers
 {
     public class ProductController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         public static List<ProductModels> products = new List<ProductModels>();
-        //public static List<ProductModels> addproducts = new List<ProductModels>();
         public static List<ProductModels> addedproducts = new List<ProductModels>();
+        public static List<ProductModels> addedwishes = new List<ProductModels>();
 
         // GET: Products
         public ActionResult Singleproduct()
@@ -24,34 +23,8 @@ namespace WebApplication800000.Controllers
             ViewBag.Message = "Your browseproduct page.";
             return View();
         }
-        public ActionResult ikShop(String m)
-        {
-            HttpCookie cookie = new HttpCookie("product");
 
-            cookie.Values.Add(m, m);
-
-            Response.Cookies.Add(cookie);
-            addedproducts.Add(new ProductModels(Int32.Parse(m)));
-            ViewBag.Message = "Your ikShop page.";
-            return RedirectToAction("Shoppingcart", "Product");
-        }
-
-        public ActionResult meShop(String m)
-        {
-            foreach (var x in addedproducts)
-            {
-                if (x.products_id == (Int32.Parse(m)))
-                {
-                    addedproducts.Remove(x);
-                    return RedirectToAction("Shoppingcart", "Product");
-                }
-            }
-            ViewBag.Message = "Your ikShop page.";
-            return RedirectToAction("Shoppingcart", "Product");
-        }
         public ActionResult Productshowcase()
-
-
         {
             HttpCookie cookie = new HttpCookie("productcookie");
             cookie.Name = "productcookie";
@@ -61,10 +34,13 @@ namespace WebApplication800000.Controllers
             Response.Cookies.Add(cookie);
             var id = Request.Cookies["productcookie"].Value;
 
-            //HttpCookie cookie2 = new HttpCookie("ghjhgf");
-            //cookie2.Values.Add("name", "x");
-            //Response.Cookies.Add(cookie2);
-            //var x = Request.Cookies["productcookie"].Value;
+            HttpCookie cookiewishlist = new HttpCookie("wishcookie");
+            cookiewishlist.Name = "wishcookie";
+            cookiewishlist.Values.Add("id", "product_id");
+            cookiewishlist.Value = DateTime.Now.ToString();
+            cookiewishlist.Expires = DateTime.Now.AddDays(1);
+            Response.Cookies.Add(cookiewishlist);
+            var idee = Request.Cookies["wishcookie"].Value;
 
             products.Clear();
             ViewBag.Message = "Your Productshowcase page.";
@@ -74,23 +50,95 @@ namespace WebApplication800000.Controllers
             }
             return View(products);
         }
-        public ActionResult Shoppingcart()
+        public ActionResult addShop(String m)
         {
-            if (Request.Cookies.Get("product") != null && addedproducts.Count == 0)
+            HttpCookie cookie = new HttpCookie("product");
+            cookie.Values.Add(m, m);
+            Response.Cookies.Add(cookie);
+            addedproducts.Add(new ProductModels(Int32.Parse(m)));
+            ViewBag.Message = "Your addShop page.";
+            return RedirectToAction("Productshowcase", "Product");
+        }
+        public ActionResult remShop(String m)
+        {
+            foreach (var x in addedproducts)
             {
-                for (int i = 0; i < 1500; i = i + 1)
+                if (x.products_id == (Int32.Parse(m)))
                 {
-                    if (Request.Cookies.Get("product").Values.Get(i + "") != null)
+                    addedproducts.Remove(x);
+                    return RedirectToAction("Shoppingcart", "Product");
+                }
+            }
+            ViewBag.Message = "Your addShop page.";
+            return RedirectToAction("Shoppingcart", "Product");
+        }
+
+        public ActionResult CrWishlist(String w)
+        {
+            HttpCookie cookiewishlist = new HttpCookie("wish");
+            cookiewishlist.Values.Add(w, w);
+            Response.Cookies.Add(cookiewishlist);
+            addedwishes.Add(new ProductModels(Int32.Parse(w)));
+            ViewBag.Message = "Your CrWishlist page.";
+            return RedirectToAction("Productshowcase", "Product");
+        }
+        public ActionResult ReWishlist(String w)
+        {
+            foreach (var x in addedwishes)
+            {
+                if (x.products_id == (Int32.Parse(w)))
+                {
+                    addedwishes.Remove(x);
+                    return RedirectToAction("Wishlist", "Product");
+                }
+            }
+            ViewBag.Message = "Your ReWishlist page.";
+            return RedirectToAction("Wishlist", "Product");
+        }
+        public ActionResult Wishlist()
+        {
+            if (Request.Cookies.Get("wishcookie") != null && addedwishes.Count == 0)
+            {
+                for (int x = 0; x < 1500; x = x + 1)
+                {
+                    if (Request.Cookies.Get("wishcookie").Values.Get(x + "") != null)
                     {
-                        addedproducts.Add(new ProductModels(i));
+                        addedwishes.Add(new ProductModels(x));
                     }
                 }
             }
-
-
+            Request.Cookies.Get("wishcookie");
+            ViewBag.Message = "Your Wishlist page.";
+            return View(addedwishes);
+        }
+        public ActionResult Shoppingcart()
+        {
+            if (Request.Cookies.Get("productcookie") != null && addedproducts.Count == 0)
+            {
+                for (int x = 0; x < 1500; x = x + 1)
+                {
+                    if (Request.Cookies.Get("productcookie").Values.Get(x + "") != null)
+                    {
+                        addedproducts.Add(new ProductModels(x));
+                    }
+                }
+            }
             Request.Cookies.Get("productcookie");
             ViewBag.Message = "Your Shopping Cart page.";
-            
+            return View(addedproducts);
+        }
+
+        public ActionResult BuyProducts(List<ProductModels> addedProducts)
+        {
+            addedProducts = addedproducts;
+            ViewBag.Message = "Checkout";
+
+
+            if (Request.Cookies.Get("loggedInCookie") == null)
+            {
+                return RedirectToAction("Login", "Customers");
+
+            }
             return View(addedproducts);
         }
     }
