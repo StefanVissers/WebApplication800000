@@ -11,24 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Alterhate</title>
 
-    <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-
     <script type="text/javascript" src="~/Scripts/jquery-latest.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.tablesorter.js"></script> 
+
     <style>
         table {
             font-family: arial, sans-serif;
@@ -45,6 +30,9 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+        td{
+            white-space: nowrap;
+        }
     </style>
     
 </head>
@@ -59,7 +47,7 @@
                 </div>
             </div>
         </div>
-    </div> <!-- End site branding area -->
+    </div>
 
     <div class="product-big-title-area">
         <div class="container">
@@ -77,6 +65,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th></th>
                 <th>Catagory</th>
                 <th>Price</th>
                 <th>Manufactorer</th>
@@ -86,32 +75,33 @@
             @foreach (var x in ProductController.products)
             {
                 <tr>
-                    <td><tc>
-                        @if(x.Manufactorer == "Msi")
+                    <td><tc>@x.Name</tc></td>
+                    <td>
+                        @if (x.Manufactorer == "Msi")
                         {
-                            <img src="~/img/MSI.png" style="max-height:30%; max-width:30%"/>
+                            <img src="~/img/MSI.png" style="max-height:30%; max-width:30%" />
                         }
-                        else if(x.Manufactorer == "Acer")
+                        else if (x.Manufactorer == "Acer")
                         {
-                            <img src="~/img/Acer.png" style="max-height:30%; max-width:30%"/>
+                            <img src="~/img/Acer.png" style="max-height:30%; max-width:30%" />
                         }
-                        else if(x.Manufactorer == "Microsoft")
+                        else if (x.Manufactorer == "Microsoft")
                         {
-                            <img src="~/img/Microsoft surface pro 4.png" style="max-height:30%; max-width:30%"/>
+                            <img src="~/img/Microsoft surface pro 4.png" style="max-height:30%; max-width:30%" />
                         }
-                        else if(x.Manufactorer == "Lenovo")
+                        else if (x.Manufactorer == "Lenovo")
                         {
-                            <img src="~/img/Lenovo yoga.png" style="max-height:30%; max-width:30%"/>
+                            <img src="~/img/Lenovo yoga.png" style="max-height:30%; max-width:30%" />
                         }
-                        else if(x.Manufactorer == "Samsung")
+                        else if (x.Manufactorer == "Samsung")
                         {
-                            <img src="~/img/Samsung.png" style="max-height:30%; max-width:30%"/>
+                            <img src="~/img/Samsung.png" style="max-height:30%; max-width:30%" />
                         }
                         else if (x.Manufactorer == "Asus")
                         {
                             <img src="~/img/Asus zenbook.png" style="max-height:30%; max-width:30%" />
                         }
-                        @x.Name</tc></td>
+                    </td>
                     <td><tc>@x.Catagory</tc></td>
                     <td><tc>$@x.Price</tc></td>
                     <td><tc>@x.Manufactorer</tc></td>
