@@ -217,9 +217,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="img\Acer.jpeg" />
-    <Content Include="img\MSI.jpeg" />
-    <Content Include="img\Samsung.jpg" />
+    <Content Include="img\Acer.png" />
+    <Content Include="img\Asus zenbook.png" />
+    <Content Include="img\Lenovo yoga.png" />
+    <Content Include="img\Microsoft surface pro 4.png" />
+    <Content Include="img\MSI.png" />
+    <Content Include="img\Samsung.png" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -274,6 +277,7 @@
     <Content Include="Views\Customers\Login.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Product\BuyProducts.cshtml" />
+    <Content Include="Views\Product\Wishlist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

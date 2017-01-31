@@ -57,7 +57,7 @@ namespace WebApplication800000.Controllers
             Response.Cookies.Add(cookie);
             addedproducts.Add(new ProductModels(Int32.Parse(m)));
             ViewBag.Message = "Your addShop page.";
-            return RedirectToAction("Shoppingcart", "Product");
+            return RedirectToAction("Productshowcase", "Product");
         }
         public ActionResult remShop(String m)
         {
@@ -80,7 +80,7 @@ namespace WebApplication800000.Controllers
             Response.Cookies.Add(cookiewishlist);
             addedwishes.Add(new ProductModels(Int32.Parse(w)));
             ViewBag.Message = "Your CrWishlist page.";
-            return RedirectToAction("Wishlist", "Product");
+            return RedirectToAction("Productshowcase", "Product");
         }
         public ActionResult ReWishlist(String w)
         {
