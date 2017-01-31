@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication800000.Models;
+using WebApplication800000.Data;
+using MySql.Data.MySqlClient;
 
 namespace WebApplication800000.Controllers
 {
@@ -11,6 +13,7 @@ namespace WebApplication800000.Controllers
         public static List<ProductModels> products = new List<ProductModels>();
         public static List<ProductModels> addedproducts = new List<ProductModels>();
         public static List<ProductModels> addedwishes = new List<ProductModels>();
+        private MySqlConnection conn;
 
         // GET: Products
         public ActionResult Singleproduct()
@@ -140,6 +143,44 @@ namespace WebApplication800000.Controllers
 
             }
             return View(addedproducts);
+        }
+
+        public ActionResult AfterBuyProducts(List<ProductModels> addedProducts)
+        {
+            addedProducts = addedproducts;
+            conn = Connection.Initialize();
+            conn.Open();
+
+            var cook = Request.Cookies["customerIdCookie"].Value;
+
+            //orders insert
+            MySqlCommand ordercmd = new MySqlCommand("INSERT INTO orders (customer_id, current_status) VALUES (" + cook + ", 'Pending'", conn);
+            ordercmd.Prepare();
+            ordercmd.ExecuteNonQuery();
+
+           
+
+            foreach (var x in addedProducts)
+            {
+                //stock update
+                MySqlCommand productcmd = new MySqlCommand("UPDATE products SET stock = stock - 1 WHERE product_id = " + x.products_id, conn);
+                productcmd.Prepare();
+                productcmd.ExecuteNonQuery();
+                //orderedproducts insert
+                MySqlCommand orderedproductscmd = new MySqlCommand("INSERT INTO orderedproducts (price_on_purchase, catagory, manufactorer, name) VALUES (" + x.Price + ", '" + x.Catagory + "', '" + x.Manufactorer + "', '" + x.Name + "')", conn);
+                orderedproductscmd.Prepare();
+                orderedproductscmd.ExecuteNonQuery();
+                //orderproduct insert WIP
+                
+                MySqlCommand orderproductscmd = new MySqlCommand("INSERT INTO orderproducts (order_id, product_id, customer_id) SELECT (SELECT order_id FROM orders WHERE customer_id = " + Request.Cookies["customerIdCookie"].Value + "), (SELECT product_id FROM orderedproducts WHERE product_id = (SELECT max(product_id) FROM orderedproducts)), (SELECT customer_id FROM orders WHERE customer_id = " + Request.Cookies["customerIdCookie"].Value + ");", conn);
+                orderproductscmd.Prepare();
+                orderproductscmd.ExecuteNonQuery();
+
+                
+            }
+
+            conn.Close();
+            return View();
         }
     }
 }
