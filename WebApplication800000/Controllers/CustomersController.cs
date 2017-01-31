@@ -76,6 +76,7 @@ namespace WebApplication800000.Controllers
                         {
                             HttpCookie adminCookie = new HttpCookie("adminCookie");
                             HttpCookie loggedinCookie = new HttpCookie("loggedInCookie");
+                            HttpCookie customerIdCookie = new HttpCookie("customerIdCookie");
 
                             Response.Cookies.Add(adminCookie);
                             Response.Cookies["adminCookie"].Value = "true";
@@ -87,13 +88,17 @@ namespace WebApplication800000.Controllers
                             Response.Cookies["loggedInCookie"].Expires = DateTime.Now.AddDays(1);
                             var y = Request.Cookies["loggedInCookie"].Value;
 
+                            Response.Cookies.Add(customerIdCookie);
+                            Response.Cookies["customerIdCookie"].Value = i.ToString();
+
                             return RedirectToAction("Index");
                         }
                         else
                         {
                             HttpCookie adminCookie = new HttpCookie("adminCookie");
                             HttpCookie loggedinCookie = new HttpCookie("loggedInCookie");
-
+                            HttpCookie customerIdCookie = new HttpCookie("customerIdCookie");
+                                
                             Response.Cookies.Add(adminCookie);
                             Response.Cookies["adminCookie"].Value = "false";
                             Response.Cookies["adminCookie"].Expires = DateTime.Now.AddMinutes(1);
@@ -103,6 +108,9 @@ namespace WebApplication800000.Controllers
                             Response.Cookies["loggedInCookie"].Value = "true";
                             Response.Cookies["loggedInCookie"].Expires = DateTime.Now.AddDays(1);
                             var y = Request.Cookies["loggedInCookie"].Value;
+
+                            Response.Cookies.Add(customerIdCookie);
+                            Response.Cookies["customerIdCookie"].Value = i.ToString();
 
                             return RedirectToAction("Edit/" + i);
                         }
@@ -117,6 +125,7 @@ namespace WebApplication800000.Controllers
         {
             Response.Cookies["adminCookie"].Value = "false";
             Response.Cookies["loggedInCookie"].Value = "false";
+            Response.Cookies["customerIdCookie"].Value = null;
 
             return RedirectToAction("/");
         }

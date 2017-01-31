@@ -1,0 +1,32 @@
+﻿@model List<WebApplication800000.Models.Address>
+
+    @{
+        ViewBag.Title = "MostOrderedFromCity";
+
+        List<String> Customers = new List<String>();
+        List<int> counts = new List<int>();
+
+
+        var productsPerManuf = from a in Model
+                               group a by a.city into g
+                               let count = g.Count()
+                               orderby count descending
+                               select new { Value = g.Key, Count = count };
+
+        foreach (var p in productsPerManuf)
+        {
+            Customers.Add(p.Value);
+            counts.Add(p.Count);
+        }
+
+        Customers = Customers.Distinct().ToList();
+
+        var myChart = new Chart(width: 600, height: 400)
+        .AddTitle("City's with the most customers")
+        .AddSeries(
+            name: "Customer",
+            xValue: Customers,
+            yValues: counts)
+        .Write();
+    }
+

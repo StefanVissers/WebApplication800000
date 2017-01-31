@@ -8,6 +8,7 @@ namespace WebApplication800000.Controllers
 {
     public class ProductController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public static List<ProductModels> products = new List<ProductModels>();
         //public static List<ProductModels> addproducts = new List<ProductModels>();
         public static List<ProductModels> addedproducts = new List<ProductModels>();
@@ -28,9 +29,6 @@ namespace WebApplication800000.Controllers
             HttpCookie cookie = new HttpCookie("product");
 
             cookie.Values.Add(m, m);
-
-
-
 
             Response.Cookies.Add(cookie);
             addedproducts.Add(new ProductModels(Int32.Parse(m)));

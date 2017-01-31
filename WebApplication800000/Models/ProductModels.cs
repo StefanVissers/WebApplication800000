@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MySql.Data.MySqlClient;
 using System.Collections;
 using WebApplication800000.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication800000.Models
 {
@@ -104,5 +105,29 @@ namespace WebApplication800000.Models
         {
             get { return manufactorer; }
         }
+    }
+
+    // Model for Products
+    // Use this for Entity Framework
+    public class Product
+    {
+        [Key]
+        [Display(Name = "product_id")]
+        public int product_id { get; set; }
+
+        [Display(Name = "name")]
+        public String name { get; set; }
+
+        [Display(Name = "category")]
+        public String category { get; set; }
+
+        [Display(Name = "price")]
+        public float price { get; set; }
+
+        [Display(Name = "manufactorer")]
+        public String manufactorer { get; set; }
+
+        [Display(Name = "stock")]
+        public int stock { get; set; }
     }
 }
