@@ -1,0 +1,80 @@
+﻿@using WebApplication800000.Controllers
+@{
+    ViewBag.Title = "Userwishlist";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alterhate</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        td {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-branding-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo">
+                        <h1><a>A<span>lterhate</span></a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Userwishlist</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Product</th>
+            <th>Wishlist</th>
+           
+        </tr>
+        @foreach (var x in UserController.userlist)
+        {
+            <tr>
+                <td><tc>@x.Id</tc></td>
+                <td><tc>@x.Name</tc></td>
+                <td><tc></tc></td>
+
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
