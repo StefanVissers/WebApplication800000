@@ -32,6 +32,11 @@ namespace WebApplication800000.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<WebApplication800000.Models.Order> Orders { get; set; }
+        public System.Data.Entity.DbSet<WebApplication800000.Models.Orderedproduct> Ordered_products { get; set; }
+        public System.Data.Entity.DbSet<WebApplication800000.Models.Orderproduct> Order_products { get; set; }
         public System.Data.Entity.DbSet<WebApplication800000.Models.Customer> Customers { get; set; }
+        public System.Data.Entity.DbSet<WebApplication800000.Models.Product> Products { get; set; }
+        public System.Data.Entity.DbSet<WebApplication800000.Models.Address> Addresses { get; set; }
     }
 }

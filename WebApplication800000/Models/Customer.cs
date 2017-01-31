@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication800000.Models
 {
+    // Model for Customer
+    // Use with Entity Framework
     public class Customer
     {
         [Key]
@@ -23,7 +25,6 @@ namespace WebApplication800000.Models
 
         [Required(ErrorMessage = "Please enter your e-mail address")]
         [Display(Name = "Email")]
-        [EmailAddress]
         public String Email { get; set; }
 
         [Required(ErrorMessage = "Please enter your password.")]

@@ -2,10 +2,32 @@
 @{
     ViewBag.Title = "ShoppingCart";
 }
-<h2>Shopping Cart</h2>
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alterhate</title>
+
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script type="text/javascript" src="~/Scripts/jquery-latest.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.tablesorter.js"></script>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -28,29 +50,79 @@
     </style>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Catagory</th>
-            <th>Price</th>
-            <th>Manufactorer</th>
-            <th>Remove</th>
-        </tr>
-        @foreach (var x in ProductController.addedproducts)
-        {
+
+    <div class="site-branding-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo">
+                        <h1><a>A<span>lterhate</span></a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End site branding area -->
+
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Shopping Cart</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="myTable" class="tablesorter">
+        <thead>
             <tr>
-                <td><tc>@x.Name</tc></td>
-                <td><tc>@x.Catagory</tc></td>
-                <td><tc>$@x.Price</tc></td>
-                <td><tc>@x.Manufactorer</tc></td>
-                <td><tc>@Html.ActionLink("Remove", "remShop", "Product", new { m = x.products_id }, null)</tc></td>
+                <th>Name</th>
+                <th>Catagory</th>
+                <th>Price</th>
+                <th>Manufactorer</th>
+                <th>Remove</th>
             </tr>
-        }
-
-    </table>
-
+        </thead>
+        <tbody>
+            @foreach (var x in ProductController.addedproducts)
+            {
+                <tr>
+                    <td><tc>
+                        @if (x.Manufactorer == "Msi")
+                        {
+                            <img src="~/img/MSI.png" style="max-height:30%; max-width:30%" />
+                        }
+                        else if (x.Manufactorer == "Acer")
+                        {
+                            <img src="~/img/Acer.png" style="max-height:30%; max-width:30%" />
+                        }
+                        else if (x.Manufactorer == "Microsoft")
+                        {
+                            <img src="~/img/Microsoft surface pro 4.png" style="max-height:30%; max-width:30%" />
+                        }
+                        else if (x.Manufactorer == "Lenovo")
+                        {
+                            <img src="~/img/Lenovo yoga.png" style="max-height:30%; max-width:30%" />
+                        }
+                        else if (x.Manufactorer == "Samsung")
+                        {
+                            <img src="~/img/Samsung.png" style="max-height:30%; max-width:30%" />
+                        }
+                        else if (x.Manufactorer == "Asus")
+                        {
+                            <img src="~/img/Asus zenbook.png" style="max-height:30%; max-width:30%" />
+                        }
+                        @x.Name</tc></td>
+                    <td><tc>@x.Catagory</tc></td>
+                    <td><tc>$@x.Price</tc></td>
+                    <td><tc>@x.Manufactorer</tc></td>
+                    <td><tc>@Html.ActionLink("Remove", "remShop", "Product", new { m = x.products_id }, null)</tc></td>
+                </tr>
+            }
+        </tbody>
+</table>
     <h3><b>@Html.ActionLink("Checkout", "BuyProducts", "Product")</b></h3>
-
-
 </body>
 </html>

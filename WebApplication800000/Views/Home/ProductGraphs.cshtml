@@ -1,0 +1,31 @@
+﻿@model List<WebApplication800000.Models.Product>
+
+    @{
+        ViewBag.Title = "ProductGraphs";
+
+        List<String> manufactorers = new List<String>();
+        List<int> productsCount = new List<int>();
+
+
+        var productsPerManuf = from p in Model
+                               group p by p.manufactorer into g
+                               let count = g.Count()
+                               orderby count descending
+                               select new { Value = g.Key, Count = count };
+
+        foreach (var p in productsPerManuf)
+        {
+            manufactorers.Add(p.Value);
+            productsCount.Add(p.Count);
+        }
+
+        manufactorers = manufactorers.Distinct().ToList();
+
+        var myChart = new Chart(width: 600, height: 400)
+        .AddTitle("Products per manufactorer")
+        .AddSeries(
+            name: "Product",
+            xValue: manufactorers,
+            yValues: productsCount)
+        .Write();
+    }

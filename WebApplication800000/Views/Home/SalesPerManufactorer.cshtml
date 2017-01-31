@@ -1,0 +1,33 @@
+﻿@model WebApplication800000.Models.OrderModelView
+
+@{ 
+    ViewBag.Title = "SalesPerManufactorer";
+
+    List<String> manufactorers = new List<String>();
+    List<int> productsCount = new List<int>();
+
+
+    var soldProductsPerManuf = from p in Model.ordered_products
+                               group p by p.manufactorer into g
+                               let count = g.Count()
+                               orderby count descending
+                               select new { Value = g.Key, Count = count };
+
+    foreach (var p in soldProductsPerManuf)
+    {
+        manufactorers.Add(p.Value);
+        productsCount.Add(p.Count);
+    }
+
+    manufactorers = manufactorers.Distinct().ToList();
+
+
+    var myChart = new Chart(width: 600, height: 400)
+                    .AddTitle("Sales per manufactorer")
+                    .AddSeries(
+                    name: "Sales",
+                    xValue: manufactorers,
+                    yValues: productsCount)
+                    .Write();
+}
+
