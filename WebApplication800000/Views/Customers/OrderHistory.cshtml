@@ -31,6 +31,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.price_on_purchase)
             </td>
+            <td><tc>@Html.ActionLink("Add To Favorites", "Favoritelist", "Product", new { id = item.product_id },null)</tc></td>
         </tr>
         }
     }

@@ -1,6 +1,6 @@
 ﻿@using WebApplication800000.Controllers
 @{
-    ViewBag.Title = "Userwishlist";
+    ViewBag.Title = "Favoritelist";
 }
 <!DOCTYPE html>
 <html>
@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>My Wishlist</h2>
+                        <h2>My Favorites</h2>
                     </div>
                 </div>
             </div>
@@ -59,22 +59,26 @@
 
 
     <table>
+        
+        
         <tr>
-            <th>User</th>
             <th>Name</th>
-            <th>Remove</th>
-           
+            <th>Catagory</th>
+            <th>Price</th>
+            <th>Manufactorer</th>
         </tr>
-        @foreach (var x in ProductController.addedwishes)
-        {
+        @foreach (var x in ProductController.favorites)
+            {
             <tr>
-                <td><tc>@x.Catagory</tc></td>
                 <td><tc>@x.Name</tc></td>
-                <td><tc>@Html.ActionLink("Remove", "ReWishlist", "Product", new { w = x.products_id }, null)</tc></td>
-
+                <td><tc>@x.Catagory</tc></td>
+                <td><tc>$@x.Price</tc></td>
+                <td><tc>@x.Manufactorer</tc></td>
+                <td><tc>@Html.ActionLink("Add To Cart", "addShop", "Product", new { m = x.products_id }, new { onclick = "return confirm('The product is added to your shoppingcart!!');" }) </tc></td>
+                <td><tc>@Html.ActionLink("Remove", "remFav", "Product", new { id = x.products_id }, new { onclick = "return confirm('Removed!');" }) </tc></td>
             </tr>
         }
 
-    </table>
+</table>
 </body>
 </html>

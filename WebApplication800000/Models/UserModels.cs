@@ -34,7 +34,7 @@ namespace WebApplication800000.Models
             {
                 conn = Connection.Initialize();
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM customer_id WHERE id=@id;", conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM customers WHERE id=@id;", conn);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", (id));
                 using (MySqlDataReader pro = cmd.ExecuteReader())

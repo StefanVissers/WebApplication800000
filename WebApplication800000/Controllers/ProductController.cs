@@ -13,6 +13,7 @@ namespace WebApplication800000.Controllers
     {
         public static List<ProductModels> products = new List<ProductModels>();
         public static List<ProductModels> addedproducts = new List<ProductModels>();
+        public static List<ProductModels> favorites = new List<ProductModels>();
         public static List<ProductModels> addedwishes = new List<ProductModels>();
         private MySqlConnection conn;
 
@@ -84,10 +85,53 @@ namespace WebApplication800000.Controllers
             Response.Cookies.Add(cookiewishlist);
             addedwishes.Add(new ProductModels(Int32.Parse(w)));
             ViewBag.Message = "Your CrWishlist page.";
+            String id = Request.Cookies["customerIdCookie"].Value;
+            MySqlConnection conn = Connection.Initialize();
+            conn.Open();
+            MySqlCommand orderproductscmd = new MySqlCommand("INSERT into wishlist_products(customer_id, product_id) VALUES(@val1, @val2)", conn);
+            orderproductscmd.Parameters.AddWithValue("@val1", id);
+            orderproductscmd.Parameters.AddWithValue("@val2", w);
+            orderproductscmd.Prepare();
+            orderproductscmd.ExecuteNonQuery();
+            conn.Close();
+
             return RedirectToAction("Productshowcase", "Product");
         }
+        public ActionResult FavoritelistShow(String id)
+        {
+            return View();
+        }
+        public ActionResult Favoritelist(String id)
+        {
+            favorites.Add(new ProductModels(Int32.Parse(id)));
+            return RedirectToAction("FavoritelistShow","Product");
+        }
+        public ActionResult remFav(String id)
+        {
+            foreach (var x in favorites)
+            {
+                if (x.products_id == Int32.Parse(id))
+                {
+                    favorites.Remove(x);
+                    return RedirectToAction("FavoritelistShow", "Product");
+                }
+            }
+
+            return RedirectToAction("FavoritelistShow", "Product");
+        }
+
         public ActionResult ReWishlist(String w)
         {
+            String id = Request.Cookies["customerIdCookie"].Value;
+            MySqlConnection conn = Connection.Initialize();
+            conn.Open();
+            MySqlCommand orderproductscmd = new MySqlCommand("DELETE FROM wishlist_products WHERE customer_id = @val1 AND product_id = @val2", conn);
+            orderproductscmd.Parameters.AddWithValue("@val1", id);
+            orderproductscmd.Parameters.AddWithValue("@val2", w);
+            orderproductscmd.Prepare();
+            orderproductscmd.ExecuteNonQuery();
+            conn.Close();
+
             foreach (var x in addedwishes)
             {
                 if (x.products_id == (Int32.Parse(w)))
@@ -97,8 +141,33 @@ namespace WebApplication800000.Controllers
                 }
             }
             ViewBag.Message = "Your ReWishlist page.";
-            return RedirectToAction("Wishlist", "Product");
+            return RedirectToAction("Userwishlist", "Product");
         }
+
+        public ActionResult Userwishlist()
+        {
+
+            String id = Request.Cookies["customerIdCookie"].Value;
+            conn = Connection.Initialize();
+            addedwishes.Clear();
+            conn.Open();
+            MySqlCommand orderproductscmd = new MySqlCommand("SELECT * FROM wishlist_products WHERE customer_id = @val1", conn);
+            orderproductscmd.Parameters.AddWithValue("@val1", id);
+            orderproductscmd.Prepare();
+            var mrTtheBoss = orderproductscmd.ExecuteReader();
+            while (mrTtheBoss.Read())
+            {
+                addedwishes.Add(new ProductModels(Int32.Parse(mrTtheBoss[0].ToString())));
+            }
+            conn.Close();
+
+
+            return View();
+        }
+
+
+
+
         public ActionResult Wishlist()
         {
             if (Request.Cookies.Get("wishcookie") != null && addedwishes.Count == 0)

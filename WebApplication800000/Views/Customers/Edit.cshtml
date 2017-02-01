@@ -89,6 +89,13 @@ using (Html.BeginForm())
         </div>
     </div>
 }
+
+<div>
+    @Html.ActionLink("Make wishlist public", "addUser", "User")
+</div>    
+<div>
+    @Html.ActionLink("Make wishlist private", "remUser", "User")
+</div>
 <div>
     @Html.ActionLink("Your address", "Create", "Addresses")
 </div>

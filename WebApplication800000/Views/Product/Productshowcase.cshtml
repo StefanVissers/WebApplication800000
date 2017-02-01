@@ -107,7 +107,7 @@
                     <td><tc>@x.Manufactorer</tc></td>
                     @*<td><tc><button name="addtocart" type=submit value="Add To Cart" style="width:100%">HTML</button></tc></td>*@
                     <td><tc>@Html.ActionLink("Add To Cart", "addShop", "Product", new { m = x.products_id }, new { onclick = "return confirm('The product is added to your shoppingcart!!');" }) </tc></td>
-                    <td><tc>@Html.ActionLink("Add To Wishlist", "CrWishlist", "Product", new { w = x.products_id }, new { onclick = "return confirm('The product is added to your wishlist!');" }) </tc></td>
+                    <td><tc>@Html.ActionLink("Add To Wishlist", "CrWishlist", "Product", new { w = x.products_id }, new { w = x.products_id, onclick = "return confirm('The product is added to your wishlist!');" }) </tc></td>
                 </tr>
 
             }

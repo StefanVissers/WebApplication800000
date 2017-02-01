@@ -5,9 +5,12 @@
         Html.AntiForgeryToken();
 
     <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("My Wishlist", "Userwishlist", "Product")</li>
+        <li>@Html.ActionLink("My Favoritelist", "FavoritelistShow", "Product")</li>
         <li>
             @Html.ActionLink("Hello " + "user" + "!", "Details/" + Request.Cookies["customerIdCookie"].Value, "Customers", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
+
         <li>
             @Html.ActionLink("Log out", "Logout", "Customers") 
         </li>
