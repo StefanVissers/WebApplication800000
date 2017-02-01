@@ -3,7 +3,12 @@
 @{
     ViewBag.Title = "Details";
 }
-
+@if ((Request.Cookies["customerIdCookie"] != null))
+{
+    if ((Int32.Parse(Request.Cookies["customerIdCookie"].Value) == Model.Id) || (Request.Cookies["adminCookie"] != null))
+    {
+        if ((Int32.Parse(Request.Cookies["customerIdCookie"].Value) == Model.Id) || (Request.Cookies["adminCookie"].Value == "true"))
+        {
 <h2>Details</h2>
 
 <div>
@@ -53,6 +58,17 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @if (Request.Cookies["adminCookie"] != null)
+                {
+                if (Request.Cookies["adminCookie"].Value == "true")
+                {
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            }
 </p>
+        }
+    }
+}

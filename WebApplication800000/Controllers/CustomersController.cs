@@ -112,7 +112,7 @@ namespace WebApplication800000.Controllers
                             Response.Cookies.Add(customerIdCookie);
                             Response.Cookies["customerIdCookie"].Value = i.ToString();
 
-                            return RedirectToAction("Edit/" + i);
+                            return RedirectToAction("Details/" + i);
                         }
                     }
                 }

@@ -27,7 +27,7 @@ namespace WebApplication800000.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = db.Addresses.Find(id);
+            Address address = db.Addresses.Find(id, 0);
             if (address == null)
             {
                 return HttpNotFound();
@@ -46,13 +46,20 @@ namespace WebApplication800000.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "postal_code,country,house_number,id,city,province,street")] Address address)
+        public ActionResult Create([Bind(Include = "address_id,postal_code,country,house_number,city,province,street")] Address address)
         {
             if (ModelState.IsValid)
             {
-                db.Addresses.Add(address);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try {
+                    address.id = Int32.Parse(Request.Cookies["customerIdCookie"].Value);
+                    db.Addresses.Add(address);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                } catch
+                {
+                    // d
+                    return RedirectToAction("Create");
+                }
             }
 
             return View(address);
@@ -65,7 +72,7 @@ namespace WebApplication800000.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = db.Addresses.Find(id);
+            Address address = db.Addresses.Find(id, 0);
             if (address == null)
             {
                 return HttpNotFound();
@@ -78,7 +85,7 @@ namespace WebApplication800000.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "postal_code,country,house_number,customer_id,city,province,street")] Address address)
+        public ActionResult Edit([Bind(Include = "postal_code,country,house_number,id,city,province,street")] Address address)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +103,7 @@ namespace WebApplication800000.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = db.Addresses.Find(id);
+            Address address = db.Addresses.Find(id, 0);
             if (address == null)
             {
                 return HttpNotFound();
@@ -109,7 +116,7 @@ namespace WebApplication800000.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Address address = db.Addresses.Find(id);
+            Address address = db.Addresses.Find(id, 0);
             db.Addresses.Remove(address);
             db.SaveChanges();
             return RedirectToAction("Index");

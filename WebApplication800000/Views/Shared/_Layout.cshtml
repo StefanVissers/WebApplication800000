@@ -30,6 +30,15 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Wishlist", "Wishlist", "Product")</li>
                     <li>@Html.ActionLink("Shopping Cart", "Shoppingcart", "Product")</li>
+                    @if (Request.Cookies["adminCookie"] != null)
+                    {
+                        if (Request.Cookies["adminCookie"].Value == "true")
+                        {
+                            <li>@Html.ActionLink("Graph: Cities/Customers", "MostOrderedFromCity", "Home")</li>
+                            <li>@Html.ActionLink("Graph: Product/Manufactorers", "ProductGraphs", "Home")</li>
+                            <li>@Html.ActionLink("Graph: Sales/Manufactorers", "SalesPerManufactorer", "Home")</li>
+                        }
+                    }
                 </ul>
                @Html.Partial("_LoginPartial")
             </div>

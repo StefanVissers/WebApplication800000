@@ -3,14 +3,19 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+@if (Request.Cookies["customerIdCookie"] != null)
+{
+    if ((Int32.Parse(Request.Cookies["customerIdCookie"].Value) == Model.Id) || (Request.Cookies["adminCookie"] != null))
+    {
+        if ((Int32.Parse(Request.Cookies["customerIdCookie"].Value) == Model.Id) || (Request.Cookies["adminCookie"].Value == "true"))
+        {
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Customer</h4>
         <hr />
@@ -84,14 +89,22 @@
         </div>
     </div>
 }
+
 <div>
     @Html.ActionLink("Add an address", "Create", "Addresses")
 </div>
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
+            if (Request.Cookies["adminCookie"] != null)
+            {
+                if (Request.Cookies["adminCookie"].Value == "true")
+                {
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            }
+        }
+    }
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

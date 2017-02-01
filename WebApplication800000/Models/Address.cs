@@ -10,19 +10,32 @@ namespace WebApplication800000.Models
     // Model Class For Address
     public class Address
     {
-        public String postal_code { get; set; }
-
-        public String country { get; set; }
-
-        public int house_number { get; set; }
-
         [Key]
+        [Column(Order = 0)]
+        [Display(Name = "id")]
         public int id { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int address_id { get; set; }
+
+        [Display(Name = "postal_code")]
+        public String postal_code { get; set; }
+
+        [Display(Name = "country")]
+        public String country { get; set; }
+
+        [Display(Name = "house_number")]
+        public int house_number { get; set; }
+
+        [Display(Name = "city")]
         public String city { get; set; }
 
+        [Display(Name = "province")]
         public String province { get; set; }
 
+        [Display(Name = "street")]
         public String street { get; set; }
     }
 }
