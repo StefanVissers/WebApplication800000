@@ -58,4 +58,26 @@ namespace WebApplication800000.Models
         public List<Orderedproduct> ordered_products { get; set; }
         public List<Orderproduct> order_products { get; set; }
     }
+    public class OrderHistoryModelView
+    {
+        [Column(Order = 1), Key]
+        [Display(Name = "customer_id")]
+        public int customer_id { get; set; }
+
+        [Column(Order = 0), Key]
+        [Display(Name = "product_id")]
+        public int product_id { get; set; }
+
+        [Display(Name = "catagory")]
+        public String catagory { get; set; }
+
+        [Display(Name = "manufactorer")]
+        public String manufactorer { get; set; }
+
+        [Display(Name = "name")]
+        public String name { get; set; }
+
+        [Display(Name = "price_on_purchase")]
+        public float price_on_purchase { get; set; }
+    }
 }

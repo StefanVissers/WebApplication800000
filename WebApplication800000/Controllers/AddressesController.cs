@@ -38,7 +38,13 @@ namespace WebApplication800000.Controllers
         // GET: Addresses/Create
         public ActionResult Create()
         {
-            return View();
+            if (db.Addresses.Find(Int32.Parse(Request.Cookies["customerIdCookie"].Value), 0) != null) {
+                return RedirectToAction("Details/" + Int32.Parse(Request.Cookies["customerIdCookie"].Value));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Addresses/Create
@@ -50,14 +56,15 @@ namespace WebApplication800000.Controllers
         {
             if (ModelState.IsValid)
             {
-                try {
+                try
+                {
                     address.id = Int32.Parse(Request.Cookies["customerIdCookie"].Value);
                     db.Addresses.Add(address);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
-                } catch
+                    return RedirectToAction("Details/" + address.id);
+                }
+                catch
                 {
-                    // d
                     return RedirectToAction("Create");
                 }
             }

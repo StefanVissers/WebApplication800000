@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebApplication800000.Models.OrderHistoryModelView>
+
+@{
+    ViewBag.Title = "OrderHistory";
+}
+
+<h2>OrderHistory</h2>
+
+@if ((Request.Cookies["customerIdCookie"] != null))
+{
+    int customerId = Int32.Parse(Request.Cookies["customerIdCookie"].Value);
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.name)</th>
+        <th>@Html.DisplayNameFor(model => model.catagory)</th>
+        <th>@Html.DisplayNameFor(model => model.manufactorer)</th>
+        <th>@Html.DisplayNameFor(model => model.price_on_purchase)</th>
+    </tr>
+    @foreach (var item in Model)
+    { if (item.customer_id == customerId) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.catagory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.manufactorer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price_on_purchase)
+            </td>
+        </tr>
+        }
+    }
+</table>
+}

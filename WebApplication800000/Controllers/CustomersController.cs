@@ -21,6 +21,35 @@ namespace WebApplication800000.Controllers
             return View(db.Customers.ToList());
         }
 
+        // GET: Customers/OrderHistory/
+        public ActionResult OrderHistory()
+        {
+            var listWithEmpty = (from p in db.Ordered_products
+                                 join f in db.Order_products
+                                 on p.product_id equals f.product_id into ThisList
+                                 from f in ThisList
+                                 select new
+                                 {
+                                     customer_id = f.customer_id,
+                                     product_id = p.product_id,
+                                     catagory = p.catagory,
+                                     manufactorer = p.manufactorer,
+                                     name = p.name,
+                                     price_on_purchase = p.price_on_purchase
+                                 }).ToList()
+                                .Select(x => new OrderHistoryModelView()
+                        {
+                            customer_id = x.customer_id,
+                            product_id = x.product_id,
+                            catagory = x.catagory,
+                            manufactorer = x.manufactorer,
+                            name = x.name,
+                            price_on_purchase = x.price_on_purchase
+                        });
+
+            return View(listWithEmpty);
+        }
+
         // GET: Customers/Details/5
         public ActionResult Details(int id)
         {

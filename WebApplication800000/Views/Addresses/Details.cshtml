@@ -13,32 +13,42 @@
         <dt>
             @Html.DisplayNameFor(model => model.city)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.city)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.province)
-        </dt>
-        <dt>
-            @Html.DisplayNameFor(model => model.id)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.province)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.postal_code)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.postal_code)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.street)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.street)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.house_number)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.house_number)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @if (Request.Cookies["adminCookie"] != null)
+    {
+        if (Request.Cookies["adminCookie"].Value == "true")
+        {
+            @Html.ActionLink("Back to List", "Index")
+        }
+    }
 </p>

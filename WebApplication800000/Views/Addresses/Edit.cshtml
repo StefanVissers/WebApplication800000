@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Edit";
 }
-
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
@@ -70,7 +69,12 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@if (Request.Cookies["adminCookie"] != null)
+{
+    if (Request.Cookies["adminCookie"].Value == "true")
+    {
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+}

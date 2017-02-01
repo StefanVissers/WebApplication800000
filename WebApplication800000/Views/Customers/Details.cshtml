@@ -59,6 +59,7 @@
 </div>
 <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Order History", "OrderHistory")
             @if (Request.Cookies["adminCookie"] != null)
                 {
                 if (Request.Cookies["adminCookie"].Value == "true")
